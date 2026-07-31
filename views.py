@@ -1,105 +1,13 @@
-# from django.shortcuts import render
-
-# # Create your views here.
-# from django.shortcuts import render
-
-# from upload.models import Dataset
-
-# from .community import *
-
-# def detect_community(request):
-
-#     dataset = Dataset.objects.last()
-
-#     if dataset is None:
-
-#         return render(
-
-#             request,
-
-#             "community_detection.html",
-
-#             {
-
-#                 "error":"Upload Dataset First"
-
-#             }
-
-#         )
-
-#     algorithm = request.GET.get(
-
-#         "algorithm",
-
-#         "louvain"
-
-#     )
-
-#     if algorithm=="spectral":
-
-#         G, communities = spectral_detection(
-
-#             dataset.edge_file.path
-
-#         )
-
-#     else:
-
-#         G, communities = louvain_detection(
-
-#             dataset.edge_file.path
-
-#         )
-
-#     total_nodes = G.number_of_nodes()
-
-#     total_edges = G.number_of_edges()
-
-#     total_communities = len(
-
-#         set(
-
-#             communities.values()
-
-#         )
-
-#     )
-
-#     context={
-
-#         "algorithm":algorithm,
-
-#         "nodes":total_nodes,
-
-#         "edges":total_edges,
-
-#         "communities":total_communities,
-
-#         "results":list(communities.items())[:20]
-
-#     }
-
-#     return render(
-
-#         request,
-
-#         "community_detection.html",
-
-#         context
-
-#     )
-
 from django.shortcuts import render
 from upload.models import Dataset
 
-from .community import (
-    louvain_detection,
-    spectral_detection,
-    kmeans_detection
-)
+import pandas as pd
 
+from community_detection_ml.community import detect_communities
+from .visualization import visualize_graph
+from community_detection_ml.community import louvain_detection
 
-def detect_community(request):
+def visualization(request):
 
     dataset = Dataset.objects.last()
 
@@ -109,68 +17,63 @@ def detect_community(request):
 
             request,
 
-            "community_detection.html",
+            "visualization.html",
 
             {
 
-                "error": "Upload Dataset First"
+                "error":"Upload Dataset First"
 
             }
 
         )
 
-    algorithm = request.GET.get(
+    nodes = pd.read_csv(
 
-        "algorithm",
-
-        "louvain"
+        dataset.node_file.path
 
     )
 
-    if algorithm == "spectral":
+    edges = pd.read_csv(
 
-        G, communities = spectral_detection(
+        dataset.edge_file.path
 
-            dataset.edge_file.path
+    )
 
-        )
+    communities = detect_communities(
 
-    elif algorithm == "kmeans":
+        dataset.node_file.path,
 
-        G, communities = kmeans_detection(
+        dataset.edge_file.path
 
-            dataset.edge_file.path
+    )
 
-        )
+    image = visualize_graph(
 
-    else:
+        nodes,
 
-        G, communities = louvain_detection(
+        edges,
 
-            dataset.edge_file.path
+        communities
 
-        )
-
-    context = {
-
-        "algorithm": algorithm,
-
-        "nodes": G.number_of_nodes(),
-
-        "edges": G.number_of_edges(),
-
-        "communities": len(set(communities.values())),
-
-        "results": list(communities.items())[:20]
-
-    }
+    )
 
     return render(
 
         request,
 
-        "community_detection.html",
+        "visualization.html",
 
-        context
+        {
+
+            "image":"visualization/graph.png"
+
+        }
 
     )
+# from django.shortcuts import render
+# from django.contrib.auth.decorators import login_required
+
+# @login_required
+# def visualization(request):
+
+#     return render(request, "visualization.html")

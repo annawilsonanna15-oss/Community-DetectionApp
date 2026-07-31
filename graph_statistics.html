@@ -1,0 +1,120 @@
+
+
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+<h2 class="mb-4">
+    Graph Statistics
+</h2>
+
+{% if error %}
+
+<div class="alert alert-danger">
+    {{ error }}
+</div>
+
+{% else %}
+
+<div class="row">
+
+<div class="col-md-3 mb-3">
+<div class="card text-center shadow">
+<div class="card-body">
+<h5>Total Nodes</h5>
+<h2>{{ stats.total_nodes }}</h2>
+</div>
+</div>
+</div>
+
+<div class="col-md-3 mb-3">
+<div class="card text-center shadow">
+<div class="card-body">
+<h5>Total Edges</h5>
+<h2>{{ stats.total_edges }}</h2>
+</div>
+</div>
+</div>
+
+<div class="col-md-3 mb-3">
+<div class="card text-center shadow">
+<div class="card-body">
+<h5>Density</h5>
+<h2>{{ stats.density }}</h2>
+</div>
+</div>
+</div>
+
+<div class="col-md-3 mb-3">
+<div class="card text-center shadow">
+<div class="card-body">
+<h5>Average Degree</h5>
+<h2>{{ stats.average_degree }}</h2>
+</div>
+</div>
+</div>
+
+<div class="col-md-3 mb-3">
+<div class="card text-center shadow">
+<div class="card-body">
+<h5>Maximum Degree</h5>
+<h2>{{ stats.maximum_degree }}</h2>
+</div>
+</div>
+</div>
+
+<div class="col-md-3 mb-3">
+<div class="card text-center shadow">
+<div class="card-body">
+<h5>Minimum Degree</h5>
+<h2>{{ stats.minimum_degree }}</h2>
+</div>
+</div>
+</div>
+
+<div class="col-md-3 mb-3">
+<div class="card text-center shadow">
+<div class="card-body">
+<h5>Connected Components</h5>
+<h2>{{ stats.connected_components }}</h2>
+</div>
+</div>
+</div>
+
+<div class="col-md-3 mb-3">
+<div class="card text-center shadow">
+<div class="card-body">
+<h5>Largest Component</h5>
+<h2>{{ stats.largest_component }}</h2>
+</div>
+</div>
+</div>
+
+<div class="col-md-3 mb-3">
+<div class="card text-center shadow">
+<div class="card-body">
+<h5>Average Clustering</h5>
+<h2>{{ stats.average_clustering }}</h2>
+</div>
+</div>
+</div>
+
+<div class="col-md-3 mb-3">
+<div class="card text-center shadow">
+<div class="card-body">
+<h5>Graph Type</h5>
+<h2>{{ stats.graph_type }}</h2>
+</div>
+</div>
+</div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

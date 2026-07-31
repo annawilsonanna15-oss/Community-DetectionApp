@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+
+        <h2> CommunityDetection On Heterogeneous Networks UsingML</h2>
+
+        <p>
+           
+        </p>
+
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3>{{ datasets }}</h3>
+            <p>Datasets</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>{{ graphs }}</h3>
+            <p>Graphs</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>{{ communities }}</h3>
+            <p>Communities</p>
+        </div>
+
+        <div class="stat-card">
+            <h3>{{ users }}</h3>
+            <p>Users</p>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h3>Project Modules</h3>
+
+    <div class="dashboard-actions">
+
+        <!-- Upload Dataset -->
+        <a href="{% url 'upload' %}" class="btn btn-primary m-2">
+            📁 Upload Dataset
+        </a>
+
+        <!-- Data Preprocessing -->
+        <a href="{% url 'preprocessing' %}" class="btn btn-info m-2">
+            🧹 Data Preprocessing
+        </a>
+
+        <!-- Graph Statistics -->
+        <a href="{% url 'graph_statistics' %}" class="btn btn-success m-2">
+            📊 Graph Statistics
+        </a>
+
+        <!-- Graph Embeddings -->
+        <a href="{% url 'embeddings' %}" class="btn btn-secondary m-2">
+            🧠 Graph Embeddings
+        </a>
+
+        <!-- Community Detection -->
+        <a href="{% url 'detect_community' %}" class="btn btn-warning m-2">
+            🤖 Community Detection
+        </a>
+
+        <!-- Graph Visualization -->
+        <a href="{% url 'visualization' %}" class="btn btn-dark m-2">
+            🌐 Graph Visualization
+        </a>
+
+        <!-- Evaluation -->
+        <a href="{% url 'evaluation' %}" class="btn btn-danger m-2">
+            📈 Evaluation
+        </a>
+
+        <!-- Report -->
+        <a href="{% url 'report' %}" class="btn btn-primary m-2">
+            📄 Results & Reports
+        </a>
+
+        <!-- User Profile -->
+        <a href="{% url 'profile' %}" class="btn btn-outline-primary m-2">
+            👤 My Profile
+        </a>
+
+        <!-- Logout -->
+        <a href="{% url 'logout' %}" class="btn btn-outline-danger m-2">
+            🚪 Logout
+        </a>
+
+    </div>
+
+    <hr>
+
+    <!-- Workflow -->
+
+    <div class="card mt-4 p-4">
+
+        <h4>Project Workflow</h4>
+
+        <ol>
+
+            <li>Upload Heterogeneous Network Dataset</li>
+
+            <li>Preprocess Dataset</li>
+
+            <li>Generate Graph Statistics</li>
+
+            <li>Create Graph Embeddings</li>
+
+            <li>Run Community Detection Algorithms</li>
+
+            <li>Visualize Communities</li>
+
+            <li>Evaluate Performance</li>
+
+            <li>Generate Final Report</li>
+
+        </ol>
+<a href="/admin/" class="btn btn-dark m-2">
+    ⚙️ Admin Panel
+</a>
+    </div>
+
+</div>
+
+{% endblock %}

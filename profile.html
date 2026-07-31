@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="profile-card">
+
+    <div class="profile-header">
+
+        <h2>My Profile</h2>
+
+        <p>Manage your account information</p>
+
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <div class="profile-image">
+
+            {% if form.instance.profile_image %}
+                <img src="{{ form.instance.profile_image.url }}" alt="Profile">
+            {% endif %}
+
+            <label>Profile Image</label>
+
+            {{ form.profile_image }}
+
+        </div>
+
+        <div class="field">
+
+            <label>Phone Number</label>
+
+            {{ form.phone }}
+
+        </div>
+
+        <div class="field">
+
+            <label>Department</label>
+
+            {{ form.department }}
+
+        </div>
+
+        <button class="main-btn">
+
+            Update Profile
+
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

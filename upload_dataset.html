@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="upload-card">
+
+    <h2>Dataset Upload</h2>
+
+    <p>Upload Nodes CSV and Edges CSV</p>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <div class="field">
+            {{ form.dataset_name }}
+        </div>
+
+        <div class="field">
+            {{ form.node_file }}
+        </div>
+
+        <div class="field">
+            {{ form.edge_file }}
+        </div>
+
+        <button type="submit" class="main-btn">
+            Upload Dataset
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

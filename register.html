@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="auth-card">
+
+    <!-- Left Panel -->
+    <div class="auth-left">
+
+        <!-- <h1>Create Account</h1> -->
+
+        <h5>Create your Community Detection account</h5><br>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="field">
+                {{ form.username }}
+            <!-- </div> -->
+
+            <!-- <div class="field"> -->
+                {{ form.email }}
+            <!-- </div> -->
+
+            <!-- <div class="field"> -->
+                {{ form.password1 }}
+            <!-- </div> -->
+
+            <!-- <div class="field"> -->
+                {{ form.password2 }}
+                 <button type="submit" class="main-btn">
+                CREATE ACCOUNT
+            </button>
+
+            </div>
+
+           
+        </form>
+        {% if form.errors %}
+<div class="alert alert-danger">
+
+    {{ form.errors }}
+
+</div>
+{% endif %}
+
+        <div class="bottom-text">
+            Already have an account?
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Right Panel -->
+    <div class="auth-right">
+
+        <div class="auth-content">
+
+            <h4>Join<br>Us!</h4>
+
+            <p>
+                Create your account to upload datasets, perform
+                community detection, visualize heterogeneous
+                networks, manage your profile, and access the
+                dashboard.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

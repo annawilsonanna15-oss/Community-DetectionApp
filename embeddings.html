@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="dashboard-card">
+
+    <h2>Graph Embeddings (TruncatedSVD)</h2>
+
+    <hr>
+
+    {% if error %}
+
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+
+    {% else %}
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="card p-4 text-center">
+                    <h5>Total Nodes</h5>
+                    <h2>{{ total_nodes }}</h2>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-4 text-center">
+                    <h5>Embedding Dimension</h5>
+                    <h2>{{ vector_size }}</h2>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-4 text-center">
+                    <h5>Generated Vectors</h5>
+                    <h2>{{ total_vectors }}</h2>
+                </div>
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="alert alert-success">
+            ✔ Graph embeddings generated successfully.
+        </div>
+
+        <a href="{% url 'detect_community' %}" class="btn btn-success">
+            Next → Community Detection
+        </a>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

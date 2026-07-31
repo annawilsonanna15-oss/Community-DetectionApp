@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="dashboard-card">
+
+    <h2>Community Detection Report</h2>
+
+    <hr>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <th>Dataset</th>
+            <td>
+                {% if dataset %}
+                    {{ dataset.dataset_name }}
+                {% else %}
+                    No Dataset
+                {% endif %}
+            </td>
+        </tr>
+
+        <tr>
+            <th>Algorithm</th>
+            <td>{{ algorithm }}</td>
+        </tr>
+
+        <tr>
+            <th>Total Nodes</th>
+            <td>{{ nodes }}</td>
+        </tr>
+
+        <tr>
+            <th>Total Edges</th>
+            <td>{{ edges }}</td>
+        </tr>
+
+        <tr>
+            <th>Communities</th>
+            <td>{{ communities }}</td>
+        </tr>
+
+        <tr>
+            <th>Modularity</th>
+            <td>{{ modularity }}</td>
+        </tr>
+
+        <tr>
+            <th>Silhouette</th>
+            <td>{{ silhouette }}</td>
+        </tr>
+
+        <tr>
+            <th>NMI</th>
+            <td>{{ nmi }}</td>
+        </tr>
+
+    </table>
+
+    <hr>
+
+    <div class="d-flex gap-3 flex-wrap">
+
+        <a href="{% url 'download_pdf' %}"
+           class="btn btn-danger">
+            📄 Download PDF
+        </a>
+
+        <a href="{% url 'download_csv' %}"
+           class="btn btn-success">
+            📊 Download CSV
+        </a>
+
+        <a href="{% url 'download_excel' %}"
+           class="btn btn-primary">
+            📘 Download Excel
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

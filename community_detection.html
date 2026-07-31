@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="dashboard-card">
+
+<h1>Community Detection</h1>
+
+<hr>
+
+<form method="get">
+
+    <select name="algorithm" class="form-control">
+
+    <option value="louvain"
+        {% if algorithm == "louvain" %}selected{% endif %}>
+        Louvain Algorithm
+    </option>
+
+    <option value="spectral"
+        {% if algorithm == "spectral" %}selected{% endif %}>
+        Spectral Clustering
+    </option>
+
+    <option value="kmeans"
+        {% if algorithm == "kmeans" %}selected{% endif %}>
+        K-Means Clustering
+    </option>
+
+</select>
+
+<!-- <select name="algorithm" class="form-select">
+
+<option value="louvain">
+
+Louvain Algorithm
+
+</option>
+
+<option value="spectral">
+
+Spectral Clustering
+
+</option>
+
+</select> -->
+
+<br>
+
+<button class="main-btn">
+
+Run Detection
+
+</button>
+
+</form>
+
+<hr>
+
+<h3>Result</h3>
+
+<table class="table table-bordered">
+
+<tr>
+
+<th>Algorithm</th>
+
+<td>{{ algorithm }}</td>
+
+</tr>
+
+<tr>
+
+<th>Total Nodes</th>
+
+<td>{{ nodes }}</td>
+
+</tr>
+
+<tr>
+
+<th>Total Edges</th>
+
+<td>{{ edges }}</td>
+
+</tr>
+
+<tr>
+
+<th>Total Communities</th>
+
+<td>{{ communities }}</td>
+
+</tr>
+
+</table>
+
+<h3>Sample Communities</h3>
+
+<table class="table table-striped">
+
+<tr>
+
+<th>Node</th>
+
+<th>Community</th>
+
+</tr>
+
+{% for node, community in results %}
+
+<tr>
+
+<td>{{ node }}</td>
+
+<td>{{ community }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<a
+
+href="{% url 'visualization' %}"
+
+class="main-btn"
+
+>
+
+Visualize Communities →
+
+</a>
+
+</div>
+
+{% endblock %}

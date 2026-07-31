@@ -1,0 +1,154 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="profile-card">
+
+<h2>
+
+Data Preprocessing
+
+</h2>
+
+{% if error %}
+
+<div class="alert alert-danger">
+
+{{ error }}
+
+</div>
+
+{% else %}
+
+<div class="row mt-4">
+
+<div class="col-md-6">
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<h4>Nodes Dataset</h4>
+
+<p>
+
+Total Nodes :
+<b>{{ node_rows }}</b>
+
+</p>
+
+<ul>
+
+{% for col in node_columns %}
+
+<li>{{ col }}</li>
+
+{% endfor %}
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<h4>Edges Dataset</h4>
+
+<p>
+
+Total Edges :
+<b>{{ edge_rows }}</b>
+
+</p>
+
+<ul>
+
+{% for col in edge_columns %}
+
+<li>{{ col }}</li>
+
+{% endfor %}
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+<hr>
+
+<h3>Preprocessing Status</h3>
+
+<table class="table table-bordered mt-3">
+
+<tr>
+<th>Operation</th>
+<th>Status</th>
+<th>Result</th>
+</tr>
+
+<tr>
+<td>Remove Duplicate Nodes</td>
+<td>✔</td>
+<td>{{ duplicate_nodes }}</td>
+</tr>
+
+<tr>
+<td>Remove Duplicate Edges</td>
+<td>✔</td>
+<td>{{ duplicate_edges }}</td>
+</tr>
+
+<tr>
+<td>Missing Values</td>
+<td>✔</td>
+<td>{{ missing_nodes|add:missing_edges }}</td>
+</tr>
+
+<tr>
+<td>Invalid Node IDs</td>
+<td>✔</td>
+<td>{{ invalid_edges }}</td>
+</tr>
+
+<tr>
+<td>Self Loops Removed</td>
+<td>✔</td>
+<td>{{ self_loops }}</td>
+</tr>
+
+<tr>
+<td>Graph Ready</td>
+<td>✔</td>
+<td>{{ graph_ready }}</td>
+</tr>
+
+</table>
+
+<div class="text-center mt-4">
+
+<a href="{% url 'graph' %}" class="btn btn-success btn-lg">
+
+Prepare Graph Structure
+
+</a>
+
+</div>
+
+{% endblock %}

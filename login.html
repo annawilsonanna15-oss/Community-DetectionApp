@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="auth-card">
+
+    <!-- Left Panel -->
+    <div class="auth-left">
+
+        <h3>Hello!</h3>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST" action="{% url 'login' %}">
+
+            {% csrf_token %}
+
+            <input
+                type="text"
+                name="username"
+                class="input-box"
+                placeholder="Username"
+                autocomplete="username"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                class="input-box"
+                placeholder="Password"
+                autocomplete="current-password"
+                required
+            >
+
+            <button type="submit" class="main-btn">
+                SIGN IN
+            </button>
+
+        </form>
+
+        <div class="bottom-text">
+            Don't have an account?
+            <a href="{% url 'register' %}">
+                Create Account
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Right Panel -->
+    <div class="auth-right">
+
+        <div class="auth-content">
+
+            <h4>Welcome Back!</h4>
+
+            <p>
+                <strong>Community Detection on Heterogeneous Networks using Machine Learning</strong><br>
+                Login to continue and access the dashboard, dataset upload,
+                graph visualization, profile management and community analysis.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

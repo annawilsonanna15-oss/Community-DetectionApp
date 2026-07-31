@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="profile-card">
+
+    <h2>Community Visualization</h2>
+
+    <hr>
+
+    {% if error %}
+
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+
+    {% else %}
+
+        <img
+            src="{% static image %}"
+            class="img-fluid"
+            alt="Community Graph"
+            style="width:100%; border-radius:15px;"
+        >
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
